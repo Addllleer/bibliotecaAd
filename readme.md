@@ -18,22 +18,28 @@ Este projeto foi desenvolvido como um case técnico com o objetivo de demonstrar
 - Python 3.10 ou superior
 - Git
 
+---
+
 ### Instalação 
 ```bash
-abrir o gitbash "gitbash here" na pasta desejada para salvar o arquivo
 git clone <https://github.com/Addllleer/bibliotecaAd>
 cd bibliotecaAd
 ```
 
 ### Criar a ativar o ambiente virtual
 #### Linux / macOS:
-python -m venv venv
+```python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
+
 #### Windows (Git Bash / Powershell): 
-python -m venv venv
+```python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
+```
+
+---
 
 ### Execução
 em desenvolvimento
