@@ -21,20 +21,23 @@ Este projeto foi desenvolvido como um case técnico com o objetivo de demonstrar
 ---
 
 ### Instalação 
-```bash
+```
+bash
 git clone <https://github.com/Addllleer/bibliotecaAd>
 cd bibliotecaAd
 ```
 
 ### Criar a ativar o ambiente virtual
 #### Linux / macOS:
-```python -m venv venv
+```
+python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
 #### Windows (Git Bash / Powershell): 
-```python -m venv venv
+```
+python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 ```
@@ -43,6 +46,11 @@ pip install -r requirements.txt
 
 ### Execução
 em desenvolvimento
+
+#### Cenários de teste
+em desenvolvimento
+URL de acesso 
+Collection insomnia
 
 ## Arquitetura
 O projeto segue uma Clean Architecture simplificada, organizada nas seguintes camadas:
