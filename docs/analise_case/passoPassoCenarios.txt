@@ -1,0 +1,181 @@
+Passo a Passo dos casos de uso:
+
+RealizaEmprestimoLivro (POST /emprestimo):
+1) buscar o usuario por id_usuario
+	- se não existir -> erro UsuarioNaoEncontrado
+2) buscar livro pelo id_livro
+	- se não existir -> erro LivroNaoEncontrado
+3) Verificar quantidade de empréstimos do usuário
+	- se quantidade >=3 -> erro LimiteEmprestimosAtingido
+4) Contar livros disponiveis 
+	- disp = qtd_copias - (ativo + atrasado)
+	count where status in (ativo, atrasado) = copias_disponiveis
+5) Verificar a disponibilidade do livro
+	- se copias_disponiveis < 1 -> erro LivroIndisponivel
+6) criar o emprestimo, com os campos
+	id_livro
+	id_usuario
+	data_emprestimo = hoje()
+	prazo_devolucao = hoje() + 14
+	data_devolucao = null
+	status = ativo
+	multa = 0
+7) salvar emprestimo
+8) Retornar emprestimo criado
+	id_livro
+	id_usuario
+	id_emprestimo
+	data_emprestimo = hoje()
+	prazo_devolucao = hoje() + 14
+	data_devolucao = null
+	status = ativo
+	multa = 0
+	
+DevolveLivro (PUT /emprestimo/{id_emprestimo}/return)
+1) buscar emprestimo pelo id_emprestimo
+	- se não existir -> erro EmprestimoNaoEncontrado
+	- se status == devolvido -> erro LivroJaDevolvido
+2) calcular multa, se houver
+	- se hoje > prazo_devolucao, entao
+		hoje - prazo_devolucao * 2 = calculo_multa
+	- senao 
+		calculo_multa = 0
+3) atualizar o emprestimo
+	- data_devolucao = hoje()
+	- status == devolvido
+	- multa = calculo_multa
+4) salvar o emprestimo
+5) retornar o emprestimo
+	id_livro
+	id_usuario
+	id_emprestimo
+	data_emprestimo 
+	prazo_devolucao
+	data_devolucao = hoje
+	status = devolvido
+	multa = calculo_multa
+	
+ListaEmprestimos (GET /emprestimo?status=ativo and atrasado)
+1) buscar por todos os empréstimos
+	- se não existir (lista vazia) -> Não existem empréstimos na biblioteca
+2) exibir os emprestimos ativos e atrasados - retornar lista de empréstimos
+	select where status in (ativo, atrasado)
+	exibir toda a lista -> order by id_usuario
+	id_livro
+	id_usuario
+	id_emprestimo
+	data_emprestimo 
+	prazo_devolucao
+	data_devolucao 
+	status 
+	multa 
+
+HistoricoUsuario (GET /usuario/{id_usuario}/emprestimo/historico
+1) buscar o usuario por id_usuario
+	- se o id_usuario não existe -> erro UsuarioNaoEncontrado
+	- se não existir empréstimos (lista vazia) -> O usuário não possui empréstimos
+2) exibir todos emprestimos (ativos, atrasados e devolvidos) - retornar lista de empréstimos
+	exibir toda a lista -> order by id_usuario:
+	id_livro
+	id_usuario
+	id_emprestimo
+	data_emprestimo 
+	prazo_devolucao
+	data_devolucao 
+	status 
+	multa 
+
+ListaLivros (GET /livro)
+1)	buscar todos os livros 
+	- se não existir (lista vazia) -> Não existem livros na biblioteca
+2) exibir a lista com todos os livros
+	titulo_livro
+	id_livro
+	autor
+	categoria
+	localizacao
+	qtd_copias
+
+CadastraLivro (POST /livro)
+1) inserir informações básicas livro:
+	titulo_livro = "inserir o título"
+	autor = "inserir o autor"
+	- se titulo_livro e autor já existem juntos
+		retorna o id_livro, categoria, localizacao
+	- senao cadastrar
+	titulo_livro = "inserir o título"
+	autor = "inserir o autor"
+	categoria (enum) = selecionar da lista
+		- se categoria não existir -> CategoriaNaoEncontrada
+	localizacao (enum) = selecionar da lista
+		- se localizacao não existir -> LocalizacaoNaoEncontrada
+	qtd_copias = 0	
+2) atualizar o número de copias 
+	- qtd_copias ++
+3) retorna as informações
+	titulo_livro
+	id_livro
+	autor
+	categoria
+	localizacao
+	qtd_copias
+
+VerificaLivro (GET /livro/{id_livro}/copias_disponiveis)
+1) buscar o usuario por id_livro
+	- se não existir -> erro LivroNaoEncontrado
+2) Contar livros disponiveis 
+	- copias_disponiveis = qtd_copias - (ativo + atrasado)
+	count where status in (ativo, atrasado) = copias_disponiveis
+3) exibir as informações do livro
+	titulo_livro
+	id_livro
+	autor
+	categoria
+	localizacao
+	qtd_copias
+	copias_disponiveis
+
+ListaUsuarios (GET /usuario)
+1)	buscar todos os usuários 
+	- se não existir (lista vazia) -> Não existem usuários na biblioteca
+2) exibir a lista com todos os usuários
+	nome
+	id_usuario
+	perfil_acesso
+
+CadastraUsuario (POST /usuario)
+1) inserir informações básicas usuário:
+	nome = "inserir o nome"
+		- se nome já existe -> UsuarioJaExiste
+	perfil_acesso = selecionar da lista
+		- se perfil não existir -> PerfilNaoEncontrado
+2) realizar o cadastro
+	nome
+	perfil_acesso
+3) retorna as informações
+	nome
+	perfil_acesso
+	id_usuario
+
+BuscaUsuario (GET /usuario/{id_usuario})
+1) inserir o id_usuario
+	- se id_usuario não existe -> UsuarioNaoEncontrado
+2) Retornar informações
+	nome
+	id_usuario
+	
+ListaEmprestimosUsuario (GET /usuario/{id_usuario}/emprestimo)
+1) buscar o usuario por id_usuario
+	- se id_usuario não existe -> erro UsuarioNaoEncontrado
+	- se não existir (lista vazia) -> O usuário não possui empréstimos
+2) exibir os emprestimos ativos e atrasados - retornar lista de empréstimos
+	select where status in (ativo, atrasado) -> exibir toda a lista:
+	id_livro
+	id_usuario
+	id_emprestimo
+	data_emprestimo 
+	prazo_devolucao
+	data_devolucao 
+	status 
+	multa 
+	

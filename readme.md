@@ -199,7 +199,21 @@ app/
 │   ├── service_livro.py
 │   └── service_emprestimo.py
 │
-└── routers/             # Rotas da API (FastAPI)
-    ├── router_usuario.py
-    ├── router_livro.py
-    └── router_emprestimo.py
+├── routers/             # Rotas da API (FastAPI)
+|   ├── router_usuario.py
+|   ├── router_livro.py
+|   └── router_emprestimo.py
+│
+├── docs/             # Demais documentos de análise do case
+|   ├── analise_case
+|   |  ├── passoPassoCenarios.txt
+|   |  └── cenarios.png
+|   └── arquitetura
+|      ├── biblioteca.drawio
+|      └── arquitetura.png
+├── tests/                # Testes automatizados
+│   ├── test_user.py
+│   ├── test_book.py
+│   └── test_loan.py
+└── README.md                   # Documentação do projeto
+
