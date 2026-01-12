@@ -11,7 +11,7 @@ class Livro(Base):
     titulo = Column(String(100), nullable=False)
     autor = Column(String(100), nullable=False)
     categoria = Column(String(20), nullable=False)
-    localizacao = Column(String(2), nullable=False) 
+    localizacao = Column(String(2), nullable=True) 
     qtd_copias = Column(Integer, nullable=False)
     copias_disponiveis = Column(Integer, nullable=False)
 
