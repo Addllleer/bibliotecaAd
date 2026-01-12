@@ -75,6 +75,16 @@ Testes manuais via Insomnia ou Postman
  
 Collection Insomnia será disponibilizada
 
+## Testes
+O projeto possui testes unitários focados na camada de serviços, validando as principais regras de negócio.
+
+Para executar os testes:
+
+```
+bash
+pytest -v
+```
+
 ## Arquitetura
 O projeto segue uma Arquitetura em camadas baseada em Router, Service e Repository, organizada da seguinte maneira:
 - Router: recebe requisições HTTP
@@ -174,36 +184,37 @@ Implementados com Pydantic.
 ## Estrutura de Pastas
 
 ```text
-app/
-├── main.py              # Ponto de entrada da aplicação (FastAPI)
-├── database.py          # Configuração e conexão com o banco de dados (SQLite)
-├── utils.py             # Funções utilitárias compartilhadas
-│
-├── models/              # Models ORM (SQLAlchemy)
-│   ├── model_usuario.py
-│   ├── model_livro.py
-│   └── model_emprestimo.py
-│
-├── schemas/             # Schemas Pydantic (validação e contratos da API)
-│   ├── schema_usuario.py
-│   ├── schema_livro.py
-│   └── schema_emprestimo.py
-│
-├── repositories/        # Camada de acesso a dados (CRUD e queries)
-│   ├── repository_usuario.py
-│   ├── repository_livro.py
-│   └── repository_emprestimo.py
-│
-├── services/            # Camada de regras de negócio
-│   ├── service_usuario.py
-│   ├── service_livro.py
-│   └── service_emprestimo.py
-│
-├── routers/             # Rotas da API (FastAPI)
-|   ├── router_usuario.py
-|   ├── router_livro.py
-|   └── router_emprestimo.py
-│
+├──app/
+|  ├── main.py              # Ponto de entrada da aplicação (FastAPI)
+|  ├── database.py          # Configuração e conexão com o banco de dados (SQLite)
+|  ├── utils.py             # Funções utilitárias compartilhadas
+|  ├── __init__.py          
+|  │
+|  ├── models/              # Models ORM (SQLAlchemy)
+|  │   ├── model_emprestimo.py
+|  │   ├── model_livro.py
+|  │   └── model_usuario.py
+|  │
+|  ├── repositories/        # Camada de acesso a dados (CRUD e queries)
+|  │   ├── repository_emprestimo.py
+|  │   ├── repository_livro.py
+|  │   └── repository_usuario.py
+|  │
+|  ├── routers/             # Rotas da API (FastAPI)
+|  |   ├── router_emprestimo.py
+|  |   ├── router_livro.py
+|  |   └── router_usuario.py
+|  │
+|  ├── schemas/             # Schemas Pydantic (validação e contratos da API)
+|  │   ├── schema_usuario.py
+|  │   ├── schema_livro.py
+|  │   └── schema_emprestimo.py
+|  │
+|  └── services/            # Camada de regras de negócio
+|      ├── service_usuario.py
+|      ├── service_livro.py
+|      └── service_emprestimo.py
+|  
 ├── docs/             # Demais documentos de análise do case
 |   ├── analise_case
 |   |  ├── passoPassoCenarios.txt
@@ -212,8 +223,9 @@ app/
 |      ├── biblioteca.drawio
 |      └── arquitetura.png
 ├── tests/                # Testes automatizados
-│   ├── test_user.py
-│   ├── test_book.py
-│   └── test_loan.py
+│   ├── conftest.py
+│   ├── test_emprestimo_service.py
+│   ├── test_livro_service.py
+│   └── test_usuario_service.py
 └── README.md                   # Documentação do projeto
 
