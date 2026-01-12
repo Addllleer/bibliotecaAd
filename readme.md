@@ -3,14 +3,21 @@
 API REST para gerenciamento de uma biblioteca digital, desenvolvida em Python, com foco em validações e regras de negócio.  
 O sistema permite o cadastro e a consulta de usuários e livros, além do controle completo do ciclo de empréstimos da biblioteca, incluindo cálculo automático de multas por atraso e consulta do histórico de empréstimos.
 
+---
 
 ## Visão Geral
 
-Este projeto foi desenvolvido como um case técnico com o objetivo de demonstrar:
+Este projeto foi desenvolvido como um case técnico, com o objetivo de demonstrar:
+
 - modelagem de domínio
 - aplicação de regras de negócio
-- boas práticas de organização e manutenção de código
-- arquitetura de software em camadas
+- separação clara de responsabilidades
+- organização de código em camadas
+- boas práticas de desenvolvimento de APIs REST
+
+O foco do projeto está na **clareza das regras de negócio**, **organização do código** e **facilidade de manutenção**, priorizando soluções simples e bem estruturadas.
+
+---
 
 ## Instruções de Instalação e Execução
 
@@ -20,10 +27,13 @@ Este projeto foi desenvolvido como um case técnico com o objetivo de demonstrar
 
 ---
 
-### Instalação 
+### Instalação
+
+Clone o seguinte repositório
+
 ```
 bash
-git clone <https://github.com/Addllleer/bibliotecaAd>
+git clone https://github.com/Addllleer/bibliotecaAd
 cd bibliotecaAd
 ```
 
@@ -48,38 +58,6 @@ pip install -r requirements.txt
 em desenvolvimento
 
 #### Cenários de teste
-em desenvolvimento
-URL de acesso 
-Collection insomnia
-
-## Arquitetura
-O projeto segue uma Clean Architecture simplificada, organizada nas seguintes camadas:
-- Arquitetura em camadas (Clean Architecture simplificada)
-- Separação clara entre domínio, aplicação, infraestrutura e API
-- Regras de negócio centralizadas nos casos de uso
-- Entidades de domínio desacopladas de frameworks
-- Repositórios definidos por interfaces
-
-### Domain
-Camada responsável por representar o domínio do negócio.
-
-Contém:
-- Entidades (`Livro`, `Usuário`, `Empréstimo`)
-- Enums (categoria de livro, status de empréstimo, perfil de acesso)
-- Exceções de domínio
-
-Esta camada não possui dependência de frameworks, banco de dados ou interface HTTP.
-
----
-
-### Application
-Camada responsável pelos casos de uso da aplicação.
-
-Contém:
-- Orquestração das regras de negócio
-- Validações de fluxo
-- Interfaces (contratos) de repositórios
-
 Exemplos de casos de uso (cenários):
 - Listar todos os usuários
 - Cadastrar novos usuários
@@ -93,29 +71,59 @@ Exemplos de casos de uso (cenários):
 - Listar todos os empréstimos ativos e atrasados
 - Consultar histórico de empréstimos por usuário
 
+Testes manuais via Insomnia ou Postman
+ 
+Collection Insomnia será disponibilizada
+
+## Arquitetura
+O projeto segue uma Arquitetura em camadas baseada em Router, Service e Repository, organizada da seguinte maneira:
+- Router: recebe requisições HTTP
+- Service: concentra regras de negócio e orquestra fluxos
+- Repository: executa operações de persistência (CRUD)
+- Database: armazena os dados da aplicação
+
+### Routers
+Camada responsável por:
+- receber requisições HTTP
+- validar dados de entrada (via schemas)
+- delegar o processamento para os services
+- retornar respostas HTTP
+Não contém regra de negócio.
+
 ---
 
-### Infrastructure
-Camada responsável por detalhes técnicos.
-
-Contém:
-- Modelos de banco de dados
-- Implementações concretas dos repositórios
-- Configuração de persistência
-
-Esta camada depende das camadas superiores, nunca o contrário.
+### Services
+Camada central da aplicação, responsável por:
+- implementar regras de negócio
+- validar fluxos (ex: limite de empréstimos)
+- calcular multas e prazos
+- coordenar chamadas aos repositories
 
 ---
 
-### API
-Camada responsável pela interface HTTP.
+### Repositories
+Responsáveis exclusivamente pelo acesso a dados. Contém:
+- operações CRUD
+- consultas e filtros
+- contagens e buscas específicas
+- Esta camada depende das camadas superiores, nunca o contrário.
 
-Contém:
-- Rotas da API
-- Schemas de entrada e saída
-- Conversão de exceções de domínio para respostas HTTP
+---
 
-Nenhuma regra de negócio é implementada nesta camada.
+### Models
+Representam as entidades persistidas no banco de dados. Contém:
+- Implementados com SQLAlchemy
+- Mapeiam tabelas e relacionamentos
+- Não contêm lógica de negócio
+
+---
+
+### Schemas
+Responsável por:
+- validação de dados de entrada
+- formatação de respostas
+- contratos de request/response
+Implementados com Pydantic.
 
 ---
 
@@ -166,19 +174,46 @@ Nenhuma regra de negócio é implementada nesta camada.
 ## Estrutura de Pastas
 
 ```text
-src/
-├── api/
-│   ├── routers/
-│   └── schemas/
-├── application/
-│   ├── interfaces/
-│   └── use_cases/
-├── domain/
-│   ├── entities/
-│   ├── enums/
-│   └── exceptions/
-├── infrastructure/
-│   ├── database/
-│   │   └── models/
-│   └── repositories/
-└── main.py
+app/
+├── main.py              # Ponto de entrada da aplicação (FastAPI)
+├── database.py          # Configuração e conexão com o banco de dados (SQLite)
+├── utils.py             # Funções utilitárias compartilhadas
+│
+├── models/              # Models ORM (SQLAlchemy)
+│   ├── model_usuario.py
+│   ├── model_livro.py
+│   └── model_emprestimo.py
+│
+├── schemas/             # Schemas Pydantic (validação e contratos da API)
+│   ├── schema_usuario.py
+│   ├── schema_livro.py
+│   └── schema_emprestimo.py
+│
+├── repositories/        # Camada de acesso a dados (CRUD e queries)
+│   ├── repository_usuario.py
+│   ├── repository_livro.py
+│   └── repository_emprestimo.py
+│
+├── services/            # Camada de regras de negócio
+│   ├── service_usuario.py
+│   ├── service_livro.py
+│   └── service_emprestimo.py
+│
+├── routers/             # Rotas da API (FastAPI)
+|   ├── router_usuario.py
+|   ├── router_livro.py
+|   └── router_emprestimo.py
+│
+├── docs/             # Demais documentos de análise do case
+|   ├── analise_case
+|   |  ├── passoPassoCenarios.txt
+|   |  └── cenarios.png
+|   └── arquitetura
+|      ├── biblioteca.drawio
+|      └── arquitetura.png
+├── tests/                # Testes automatizados
+│   ├── test_user.py
+│   ├── test_book.py
+│   └── test_loan.py
+└── README.md                   # Documentação do projeto
+
