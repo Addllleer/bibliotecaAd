@@ -17,3 +17,28 @@ def test_criar_livro(db_session):
     assert livro.id_livro is not None
     assert livro.qtd_copias == 5
     assert livro.copias_disponiveis == 5
+
+def test_listar_livros_retorna_lista(db_session):
+    LivroService.criar_livro(
+        db_session,
+        "Livro A",
+        "Autor A",
+        CategoriaLivro.TECNICO,
+        2
+    )
+
+    LivroService.criar_livro(
+        db_session,
+        "Livro B",
+        "Autor B",
+        CategoriaLivro.ROMANCE,
+        1
+    )
+
+    livros = LivroService.listar_livros(db_session)
+
+    assert isinstance(livros, list)
+    assert len(livros) == 2
+    assert livros[0].titulo == "Livro A"
+    assert livros[1].titulo == "Livro B"
+

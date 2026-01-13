@@ -82,7 +82,6 @@ Para executar os testes:
 
 ### Teste unitário:
 ```
-bash
 pytest -v
 ```
 
@@ -92,7 +91,6 @@ pytest -v
 Com o ambiente virtual ativado, execute o comando abaixo na raiz do projeto:
 
 ```
-bash
 python -m uvicorn app.main:app --reload
 ```
 

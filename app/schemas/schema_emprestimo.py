@@ -9,7 +9,7 @@ class EmprestimoBase(BaseModel):
 
 
 class EmprestimoCreate(EmprestimoBase):
-    pass
+    data_emprestimo: Optional[date] = None
 
 
 class EmprestimoResponse(EmprestimoBase):

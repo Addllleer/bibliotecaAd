@@ -7,18 +7,24 @@ from app.domain.enums.localizacao_livro import LocalizacaoLivro
 class LivroBase(BaseModel):
     titulo: str
     autor: str
-    categoria: CategoriaLivro
     qtd_copias: int
     copias_disponiveis: int
-    localizacao: LocalizacaoLivro | None = None
 
 
 class LivroCreate(LivroBase):
-    pass
+    categoria: CategoriaLivro
+    localizacao: LocalizacaoLivro | None = None
 
 
-class LivroResponse(LivroBase):
+class LivroResponse(BaseModel):
     id_livro: int
+    titulo: str
+    autor: str
+    categoria: str
+    qtd_copias: int
+    copias_disponiveis: int
+    localizacao: str | None
 
     class Config:
         orm_mode = True
+

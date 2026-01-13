@@ -5,6 +5,10 @@ from app.models.model_usuario import Usuario
 class UsuarioRepository:
 
     @staticmethod
+    def get_by_nome(db: Session, nome: str) -> Usuario | None:
+        return db.query(Usuario).filter(Usuario.nome == nome).first()
+
+    @staticmethod
     def create(db: Session, usuario: Usuario) -> Usuario:
         db.add(usuario)
         db.commit()
