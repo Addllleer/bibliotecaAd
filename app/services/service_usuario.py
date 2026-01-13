@@ -10,7 +10,7 @@ class UsuarioService:
     def criar_usuario(db: Session, nome: str, perfil_acesso: str) -> Usuario:
         usuario = Usuario(
             nome=nome,
-            perfil_acesso=perfil_acesso
+            perfil_acesso=perfil_acesso.value
         )
         return UsuarioRepository.create(db, usuario)
 

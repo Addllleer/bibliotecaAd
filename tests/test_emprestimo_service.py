@@ -3,12 +3,15 @@ from datetime import timedelta, date
 from app.services.service_usuario import UsuarioService
 from app.services.service_livro import LivroService
 from app.services.service_emprestimo import EmprestimoService
+from app.domain.enums.categoria_livro import CategoriaLivro
+from app.domain.enums.localizacao_livro import LocalizacaoLivro
+from app.domain.enums.perfil_acesso import PerfilAcesso
 
 
 def test_realizar_emprestimo_com_sucesso(db_session):
-    usuario = UsuarioService.criar_usuario(db_session, "Renan", "COMUM")
+    usuario = UsuarioService.criar_usuario(db_session, "Renan", PerfilAcesso.USUARIO)
     livro = LivroService.criar_livro(
-        db_session, "Catequese ABC", "Renan da Silva", "Religião", 2
+        db_session, "Catequese ABC", "Renan da Silva", CategoriaLivro.RELIGIAO, 2
     )
 
     emprestimo = EmprestimoService.realizar_emprestimo(
@@ -22,9 +25,9 @@ def test_realizar_emprestimo_com_sucesso(db_session):
 
 
 def test_limite_maximo_de_emprestimos(db_session):
-    usuario = UsuarioService.criar_usuario(db_session, "Ana", "COMUM")
+    usuario = UsuarioService.criar_usuario(db_session, "Ana", PerfilAcesso.USUARIO)
     livro = LivroService.criar_livro(
-        db_session, "Fundamentos de Física", "Antônio Stark", "Técnico", 5
+        db_session, "Fundamentos de Física", "Antônio Stark", CategoriaLivro.TECNICO, 5
     )
 
     for _ in range(3):

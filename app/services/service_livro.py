@@ -19,10 +19,10 @@ class LivroService:
         livro = Livro(
             titulo=titulo,
             autor=autor,
-            categoria=categoria,
+            categoria=categoria.value,
             qtd_copias=qtd_copias,
             copias_disponiveis=qtd_copias,
-            localizacao=localizacao
+            localizacao=localizacao.value if localizacao else None
         )
 
         return LivroRepository.create(db, livro)

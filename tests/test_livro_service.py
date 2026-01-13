@@ -1,4 +1,7 @@
 from app.services.service_livro import LivroService
+from app.domain.enums.categoria_livro import CategoriaLivro
+from app.domain.enums.localizacao_livro import LocalizacaoLivro
+
 
 
 def test_criar_livro(db_session):
@@ -6,9 +9,9 @@ def test_criar_livro(db_session):
         db=db_session,
         titulo="As aventuras do Manto Celeste",
         autor="Roberto Magalhães",
-        categoria="Romance",
+        categoria=CategoriaLivro.AVENTURA,
         qtd_copias=5,
-        localizacao="A1"
+        localizacao=LocalizacaoLivro.A1
     )
 
     assert livro.id_livro is not None
