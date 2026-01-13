@@ -112,10 +112,37 @@ Exemplos de casos de uso (cenários):
 - Consultar histórico de empréstimos por usuário
 
 ---
-### Testes via Insomnia 
+### Testes manuais via Insomnia 
 Collection Insomnia:
 
+Além dos testes unitários, o projeto conta com uma collection do Insomnia para execução de testes manuais e validação completa da API.
+
+A collection inclui:
+- Cadastro e listagem de usuários
+- Cadastro e consulta de livros
+- Realização e devolução de empréstimos
+- Listagem de empréstimos ativos, atrasados e histórico
+- Paginação em todas as listagens
+
+O arquivo da collection está disponível em:
+docs/testes/insomnia/Insomnia_biblioteca.json
+
+#### Para utilizar:
+1. Abra o Insomnia
+2. Clique em **Import/Export**
+3. Selecione **Import Data**
+4. Importe o arquivo JSON
 ---
+
+### Evidências dos testes
+O projeto conta com um roteiro formal de testes manuais e evidências documentadas.
+
+- Roteiro: `docs/testes/PlanilhaUnificadaDeTestesBiblioteca.xlsx`
+- Evidências: `docs/testes/` - cada roteiro está evidenciado em sua pasta
+- Collection do Insomnia: `docs/testes/insomnia/Insomnia_biblioteca.json`
+
+Esses testes complementam os testes unitários automatizados.
+
 
 ## Arquitetura
 O projeto segue uma Arquitetura em camadas organizada da seguinte maneira:
@@ -208,6 +235,12 @@ Implementados com Pydantic.
 - Multa calculada apenas no momento da devolução
 
 ---
+## Roadmap
+Ideias e sugestões de melhoria de código e de negócio para implementação em próximas features.
+Disponível em:
+docs/analise_case/roadmap.md
+
+---
 
 ## Estrutura de Pastas
 
@@ -253,11 +286,21 @@ Implementados com Pydantic.
 |  
 ├── docs/             # Demais documentos de análise do case
 |   ├── analise_case
+|   |  ├── cenarios.png
 |   |  ├── passoPassoCenarios.txt
-|   |  └── cenarios.png
-|   └── arquitetura
-|      ├── biblioteca.drawio
-|      └── arquitetura.png
+|   |  └── roadmap.md
+|   ├── arquitetura
+|   |   ├── biblioteca.drawio
+|   |   └── arquitetura.png
+|   └── testes
+|      ├── Teste Integral
+|      ├── Insomnia
+|      |   └── Insomnia_biblioteca.json
+|      ├── Testes emprestimos
+|      ├── Testes livros
+|      ├── Testes usuários
+|      └── PlanilhaUnificadaDeTestesBiblioteca.xlsx
+|
 ├── tests/                # Testes automatizados
 │   ├── conftest.py
 │   ├── test_emprestimo_service.py
