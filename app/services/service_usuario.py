@@ -56,6 +56,18 @@ class UsuarioService:
         )
 
     @staticmethod
-    def buscar_usuario(db: Session, id_usuario: int) -> Usuario | None:
-        return UsuarioRepository.get_by_id(db, id_usuario)
+    def buscar_usuario(db: Session, id_usuario: int):
+        usuario = UsuarioRepository.get_by_id(db, id_usuario)
+
+        if not usuario:
+            raise ValueError("Usuário não encontrado")
+
+        usuario.emprestimos = [
+            e for e in usuario.emprestimos
+            if e.status in ("ATIVO", "ATRASADO")
+        ]
+
+        return usuario
+
+
 

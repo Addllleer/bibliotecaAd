@@ -70,9 +70,8 @@ def test_criar_usuario_duplicado(db_session):
     assert "Usuário já existe" in str(exc.value)
 
 def test_buscar_usuario_inexistente(db_session):
-    usuario = UsuarioService.buscar_usuario(db_session, 999)
-
-    assert usuario is None
+    with pytest.raises(ValueError, match="Usuário não encontrado"):
+        UsuarioService.buscar_usuario(db_session, 999)
 
 def test_listar_usuarios_pagina_vazia(db_session):
     usuarios = UsuarioService.listar_usuarios(
