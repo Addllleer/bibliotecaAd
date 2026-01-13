@@ -1,0 +1,1507 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Biblioteca Digital
+meta:
+  id: wrk_aa1bcfc48351493cbcc6d55a0af1879f
+  created: 1768317023390
+  modified: 1768317023390
+  description: ""
+collection:
+  - name: Empréstimos
+    meta:
+      id: fld_c72d44c6f82e475ab264f215f0348110
+      created: 1768317148801
+      modified: 1768317148801
+      sortKey: -1768317148801
+      description: ""
+    children:
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: EMP-01 - Usuário já está com um livro igual
+        meta:
+          id: req_1ac088dde5e448e7a508f2564f11ad69
+          created: 1768318029446
+          modified: 1768329729587
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347895.625
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 15,
+              "id_livro": 4,
+              "data_emprestimo": "2026-01-13"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/atuais"
+        name: EMP-14 - Lista de empréstimos
+        meta:
+          id: req_03959af1ecea4baa93ba9bf2d5771b31
+          created: 1768318360802
+          modified: 1768329514382
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347805
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/33/devolucao"
+        name: EMP-08 - Devolução sem multa
+        meta:
+          id: req_2866ad68b38142faa6929f491f112ec3
+          created: 1768318429865
+          modified: 1768331859431
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347855
+        method: POST
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/historico"
+        name: EMP-16 - Histórico de empréstimos
+        meta:
+          id: req_a8d0a2ac09de48bd82bee30696eba819
+          created: 1768318566865
+          modified: 1768331123560
+          isPrivate: false
+          description: ""
+          sortKey: -1768318216917.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/usuario/35"
+        name: EMP-18 - Histórico por usuário
+        meta:
+          id: req_1ed90bfa6328401199fe777e26ca40b3
+          created: 1768318989342
+          modified: 1768331376480
+          isPrivate: false
+          description: ""
+          sortKey: -1768318151473.75
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: EMP-05 - 2º empréstimo usuário
+        meta:
+          id: req_78cd9788c11d4568a20b262852dd9f9d
+          created: 1768328920851
+          modified: 1768330346023
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347858.125
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 35,
+              "id_livro": 12,
+              "data_emprestimo": "2025-12-31"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: EMP-03 - Livro sem disponibilidade
+        meta:
+          id: req_d6f15fcfa5ab41db993da951a288f6b6
+          created: 1768328951378
+          modified: 1768330057427
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347867.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 1,
+              "id_livro": 4,
+              "data_emprestimo": "2026-01-13"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: EMP-04 - Usuário não existe
+        meta:
+          id: req_8a37200735fa4564b9dc31d13b05ba08
+          created: 1768328975522
+          modified: 1768330119286
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347861.25
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 115,
+              "id_livro": 4,
+              "data_emprestimo": "2026-01-13"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: EMP-02 - Livro não existe
+        meta:
+          id: req_6e65805163b44fffb946db70ee20960b
+          created: 1768329052994
+          modified: 1768330013845
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347892.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 15,
+              "id_livro": 444,
+              "data_emprestimo": "2026-01-13"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: EMP-07 - 4º empréstimo usuário
+        meta:
+          id: req_65f257e8555d4e228b49e81b4d722f22
+          created: 1768329188223
+          modified: 1768330426780
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347855.7812
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 35,
+              "id_livro": 5,
+              "data_emprestimo": "2025-12-30"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: EMP-06 - 3º empréstimo usuário
+        meta:
+          id: req_60ad5a7d5dc74415a990b19890206531
+          created: 1768329212893
+          modified: 1768330363302
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347856.5625
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 35,
+              "id_livro": 8,
+              "data_emprestimo": "2025-12-30"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/17/devolucao"
+        name: EMP-09 - Devolução prazo máximo
+        meta:
+          id: req_30a6bb7116414d0db804c3b0c40b2ce4
+          created: 1768329325049
+          modified: 1768330505838
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347830
+        method: POST
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/18/devolucao"
+        name: EMP-10 - Devolução com multa
+        meta:
+          id: req_2f2955f466f247ac8ae312f02d482792
+          created: 1768329334709
+          modified: 1768330666062
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347817.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/20/devolucao"
+        name: EMP-11 - Devolução com multa 2
+        meta:
+          id: req_532ac630697c4b29943e43fa2394e7fa
+          created: 1768329396865
+          modified: 1768330670024
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347811.25
+        method: POST
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/7/devolucao"
+        name: EMP-12 - Devolução já realizada
+        meta:
+          id: req_e2fd9186193447e0977f7ac22bbe3861
+          created: 1768329484163
+          modified: 1768330747225
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347808.125
+        method: POST
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/999/devolucao"
+        name: EMP-13 - Id Devolução não existe
+        meta:
+          id: req_d20c6091961a412da5d9346e0f65f551
+          created: 1768329500159
+          modified: 1768330976732
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347806.5625
+        method: POST
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/atuais?status=ativo&page=2"
+        name: EMP-15 - Lista de empréstimos Pg2
+        meta:
+          id: req_eb2a3ef2d2e34b288b7f2b2bc3d2ce9d
+          created: 1768329526771
+          modified: 1768331061065
+          isPrivate: false
+          description: ""
+          sortKey: -1768318282361.25
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/historico?page=2"
+        name: EMP-17 - Histórico de empréstimos Pg2
+        meta:
+          id: req_b973358b6d874753bc2fd3f394777d97
+          created: 1768329546412
+          modified: 1768331306633
+          isPrivate: false
+          description: ""
+          sortKey: -1768318184195.625
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/usuario/35?page=2"
+        name: EMP-19 - Histórico por usuário pg2
+        meta:
+          id: req_7cdab237845847059c21939c9ab255f7
+          created: 1768329573259
+          modified: 1768331881159
+          isPrivate: false
+          description: ""
+          sortKey: -1768318118751.875
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: EMP-00 - Novo Empréstimo
+        meta:
+          id: req_489bd2b77e384055a776c377df99cdbd
+          created: 1768329710629
+          modified: 1768331791108
+          isPrivate: false
+          description: ""
+          sortKey: -1768318347898.75
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 35,
+              "id_livro": 12,
+              "data_emprestimo": "2026-01-11"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Usuários
+    meta:
+      id: fld_c8937d3bc6424a5482802cf6913ad730
+      created: 1768317159035
+      modified: 1768317159034
+      sortKey: -1768317159035
+      description: ""
+    children:
+      - url: "{{ _.Local.base_url }}/usuarios"
+        name: USR-01 - Novo Usuário
+        meta:
+          id: req_0858a585b6464b639353bdbf3b2c8165
+          created: 1768317366788
+          modified: 1768326297587
+          isPrivate: false
+          description: ""
+          sortKey: -1768317366788
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "Ana Carolina",
+              "perfil_acesso": "USUARIO"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/usuarios/15"
+        name: USR-05 - Busca Usuário por id
+        meta:
+          id: req_d5da81a8af6f48169ffc29a64525c100
+          created: 1768318047739
+          modified: 1768326411289
+          isPrivate: false
+          description: ""
+          sortKey: -1768317366638
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/usuarios"
+        name: USR-04 - Lista de usuários
+        meta:
+          id: req_0b286fd2f1af47cfa2453f82600f5643
+          created: 1768318073757
+          modified: 1768326556884
+          isPrivate: false
+          description: ""
+          sortKey: -1768317366659.875
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/usuarios"
+        name: USR-02 - Novo Admin
+        meta:
+          id: req_78eb206d63844f2ea0d912093c021548
+          created: 1768318316715
+          modified: 1768326246912
+          isPrivate: false
+          description: ""
+          sortKey: -1768317366700.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "Jorge da Silva",
+              "perfil_acesso": "ADMIN"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/usuarios"
+        name: USR-03 - Usuário Já existe
+        meta:
+          id: req_aba9c90831d0409799ab494bafa1b085
+          created: 1768326343483
+          modified: 1768326358086
+          isPrivate: false
+          description: ""
+          sortKey: -1768317366681.75
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "Ana Carolina",
+              "perfil_acesso": "USUARIO"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/usuarios/999"
+        name: USR-06 - Busca id não existe
+        meta:
+          id: req_fd7a5711d22747038dcbbf518258683d
+          created: 1768326428108
+          modified: 1768326510389
+          isPrivate: false
+          description: ""
+          sortKey: -1768317366613
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/usuarios?page=4&size=10"
+        name: USR-07 - Pag 2 Lista de usuários
+        meta:
+          id: req_89215fae9faf4a62a95c7792ec38f610
+          created: 1768326552909
+          modified: 1768330201213
+          isPrivate: false
+          description: ""
+          sortKey: -1768317366513
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Livros
+    meta:
+      id: fld_116e8dcf0daf4bf1a1ae0b078295c59b
+      created: 1768317168140
+      modified: 1768317168140
+      sortKey: -1768317168140
+      description: ""
+    children:
+      - url: "{{ _.Local.base_url }}/livros"
+        name: LIV-01 - Novo Livro x1
+        meta:
+          id: req_533dcc671e3f46aab613061d2d4e39f3
+          created: 1768318032706
+          modified: 1768328146218
+          isPrivate: false
+          description: ""
+          sortKey: -1768318086030
+        method: POST
+        body:
+          mimeType: application/json
+          text: |2
+             {
+              "titulo": "A serie B",
+              "autor": "Marcio Menezes",
+              "categoria": "TERROR",
+              "qtd_copias": 1,
+              "localizacao": "A3"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros"
+        name: LIV-03 - Lista de livros
+        meta:
+          id: req_fc9cc56b92214a39bbc28798878cb022
+          created: 1768318078702
+          modified: 1768327358613
+          isPrivate: false
+          description: ""
+          sortKey: -1768318085992.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros/3"
+        name: LIV-06 - Busca Livro por id
+        meta:
+          id: req_d3936e7440e4469b8b665a6874192e5c
+          created: 1768318151400
+          modified: 1768327828553
+          isPrivate: false
+          description: ""
+          sortKey: -1768318085986.25
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros"
+        name: LIV-04 - Categoria não existe
+        meta:
+          id: req_76402f2acde24bf9a53df70b08c67da7
+          created: 1768318305561
+          modified: 1768327649999
+          isPrivate: false
+          description: ""
+          sortKey: -1768318085989.375
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "titulo": "Egito Antigo",
+              "autor": "Bruno Spers",
+              "categoria": "Escolar",
+              "qtd_copias": 1,
+              "localizacao": "A1"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros"
+        name: LIV-05 - Localização não existe
+        meta:
+          id: req_a9a8e6293dbf406aa43aa5cdaa4e3bba
+          created: 1768318310693
+          modified: 1768327738613
+          isPrivate: false
+          description: ""
+          sortKey: -1768318085987.8125
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "titulo": "Egito Antigo",
+              "autor": "Bruno Spers",
+              "categoria": "HISTORIA",
+              "qtd_copias": 1,
+              "localizacao": "25"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros"
+        name: LIV-02 - Novo Livro x3
+        meta:
+          id: req_6f7eb3db51df4b83be25440035c0faad
+          created: 1768326960535
+          modified: 1768327175003
+          isPrivate: false
+          description: ""
+          sortKey: -1768318086005
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "titulo": "O Carpinteiro",
+              "autor": "Joseph Jr",
+              "categoria": "ROMANCE",
+              "qtd_copias": 3,
+              "localizacao": "A1"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros/111"
+        name: LIV-07 - Busca id não existe
+        meta:
+          id: req_29e2dbc046124e74a20461e7e974076d
+          created: 1768327383773
+          modified: 1768327871712
+          isPrivate: false
+          description: ""
+          sortKey: -1768318085983.125
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros?page=2&size=10"
+        name: LIV-08 - Lista de livros Pg 2
+        meta:
+          id: req_cf4c1e8e7ea24c4e8b60f71aa681a45e
+          created: 1768327517242
+          modified: 1768327930513
+          isPrivate: false
+          description: ""
+          sortKey: -1768318085883.125
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Teste Completo
+    meta:
+      id: fld_212b46e8f2d44cf19b478b1953a91543
+      created: 1768332305107
+      modified: 1768332305107
+      sortKey: -1768332305107
+      description: ""
+    children:
+      - url: "{{ _.Local.base_url }}/usuarios/36"
+        name: INT-01 - consulta usuário
+        meta:
+          id: req_cf50039b0c2e4c78bb191835785da6a4
+          created: 1768332345226
+          modified: 1768332955324
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350933
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros/17"
+        name: INT-01 - consulta livro
+        meta:
+          id: req_7a323d942d684492882d15ebaba83eb4
+          created: 1768332371051
+          modified: 1768332997274
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350958
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/usuarios"
+        name: INT-02 - cria usuário
+        meta:
+          id: req_ce136a22c3a448a1abe0efb8da33e55e
+          created: 1768332392247
+          modified: 1768333393964
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350908
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "Dirceu Costa",
+              "perfil_acesso": "USUARIO"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/usuarios/15"
+        name: INT-03 - Consulta usuário
+        meta:
+          id: req_9b3d68a1848f4f1b938c97337f97a62a
+          created: 1768332427537
+          modified: 1768332469311
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350883
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros"
+        name: INT-04 - cria livros x4
+        meta:
+          id: req_7c0cf5754a2742d5b553c5e450870b3f
+          created: 1768332458070
+          modified: 1768333786742
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350858
+        method: POST
+        body:
+          mimeType: application/json
+          text: |2
+             {
+              "titulo": "O castelo encantado",
+              "autor": "Wal Mir",
+              "categoria": "INFANTIL",
+              "qtd_copias": 1,
+              "localizacao": "A1"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros/17"
+        name: INT-05 - consulta livro
+        meta:
+          id: req_a8c78f64d6a1402cadb492b678f9ac64
+          created: 1768332514125
+          modified: 1768333881204
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350833
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: INT-06 - Novo Empréstimo x3
+        meta:
+          id: req_06b9766e73564a27980b9a55953c43a6
+          created: 1768332533613
+          modified: 1768334204510
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350826.75
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 2,
+              "id_livro": 10,
+              "data_emprestimo": "2026-01-11"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/livros/17"
+        name: INT-08 - consulta livro
+        meta:
+          id: req_9163fb6a1ef242a390accedc5fd631ad
+          created: 1768332625811
+          modified: 1768334136062
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350823.625
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: INT-09 - 4º Empréstimo
+        meta:
+          id: req_c6bffcdfe8e849d7be9180aa78838640
+          created: 1768332646321
+          modified: 1768334458368
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350822.0625
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 35,
+              "id_livro": 11,
+              "data_emprestimo": "2026-01-11"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/36/devolucao"
+        name: INT-10 - Devolução sem multa
+        meta:
+          id: req_33a74df1bcac4acf8a9a3a69acce4fa6
+          created: 1768332745150
+          modified: 1768334216698
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350821.8672
+        method: POST
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos"
+        name: INT-11 - Novo Empréstimo
+        meta:
+          id: req_53e2a955418045d49a87861450ca419d
+          created: 1768332809671
+          modified: 1768334265260
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350821.6719
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id_usuario": 36,
+              "id_livro": 20,
+              "data_emprestimo": "2026-01-13"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/usuarios/36"
+        name: INT-12 - Buscar usuário
+        meta:
+          id: req_13ded4d8b9df4a8ebd14388b780b2281
+          created: 1768332843748
+          modified: 1768334299968
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350821.5254
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}/emprestimos/usuario/36"
+        name: INT-13 - Histórico do usuário
+        meta:
+          id: req_ea2df7da054140bcb3ef224d72705875
+          created: 1768332886297
+          modified: 1768334324718
+          isPrivate: false
+          description: ""
+          sortKey: -1768332350821.379
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_9a3eb1b442b9d3c9edc0512a6753703d0b2c7daa
+    created: 1768317023402
+    modified: 1768317023402
+environments:
+  name: Local
+  meta:
+    id: env_9a3eb1b442b9d3c9edc0512a6753703d0b2c7daa
+    created: 1768317023397
+    modified: 1768317798868
+    isPrivate: false
+  data:
+    Local:
+      base_url: http://localhost:8000

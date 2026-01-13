@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
-
+from fastapi import Query
 from app.database import get_db
 from app.schemas.schema_emprestimo import EmprestimoCreate, EmprestimoResponse
 from app.services.service_emprestimo import EmprestimoService
@@ -80,3 +80,21 @@ def listar_historico_emprestimos(
     db: Session = Depends(get_db)
 ):
     return EmprestimoService.listar_historico_emprestimos(db, page, size)
+
+@router.get(
+    "/usuario/{id_usuario}",
+    response_model=list[EmprestimoResponse],
+    summary="Listar empréstimos por usuário",
+)
+def listar_emprestimos_por_usuario(
+    id_usuario: int,
+    page: int = Query(1, ge=1),
+    size: int = Query(10, ge=1, le=100),
+    db: Session = Depends(get_db)
+):
+    return EmprestimoService.listar_emprestimos_por_usuario(
+        db=db,
+        id_usuario=id_usuario,
+        page=page,
+        size=size
+    )

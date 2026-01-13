@@ -22,3 +22,15 @@ class EmprestimoResponse(EmprestimoBase):
 
     class Config:
         orm_mode = True
+
+class EmprestimoResumoResponse(BaseModel):
+    id_emprestimo: int
+    id_livro: int
+    status: str
+    data_emprestimo: date
+    prazo_devolucao: date
+    data_devolucao: Optional[date]
+    multa: Optional[float]
+
+    class Config:
+        from_attributes = True
