@@ -156,3 +156,22 @@ class EmprestimoService:
         size: int = 10
     ):
         return EmprestimoRepository.list_historico(db, page, size)
+    
+    @staticmethod
+    def listar_emprestimos_por_usuario(
+        db: Session,
+        id_usuario: int,
+        page: int = 1,
+        size: int = 10
+    ):
+        usuario = UsuarioRepository.get_by_id(db, id_usuario)
+        if not usuario:
+            raise ValueError("Usuário não encontrado")
+
+        return EmprestimoRepository.list_by_usuario(
+            db=db,
+            id_usuario=id_usuario,
+            page=page,
+            size=size
+        )
+ 
