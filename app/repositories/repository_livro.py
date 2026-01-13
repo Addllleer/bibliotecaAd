@@ -16,8 +16,9 @@ class LivroRepository:
         return db.query(Livro).filter(Livro.id_livro == id_livro).first()
 
     @staticmethod
-    def list_all(db: Session) -> list[Livro]:
-        return db.query(Livro).all()
+    def list_all(db: Session, page: int, size: int):
+        offset = (page - 1) * size
+        return db.query(Livro).offset(offset).limit(size).all()
 
     @staticmethod
     def update(db: Session, livro: Livro) -> Livro:

@@ -23,5 +23,5 @@ class UsuarioService:
         return UsuarioRepository.get_by_id(db, id_usuario)
 
     @staticmethod
-    def listar_usuarios(db: Session) -> list[Usuario]:
-        return UsuarioRepository.list_all(db)
+    def listar_usuarios(db: Session, page: int = 1, size: int = 10):
+        return UsuarioRepository.list_all(db, page, size)

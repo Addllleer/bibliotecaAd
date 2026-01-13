@@ -82,15 +82,13 @@ class EmprestimoService:
         return emprestimo
 
     @staticmethod
-    def listar_emprestimos_atuais(db):
-        return (
-            db.query(Emprestimo)
-            .filter(Emprestimo.status.in_(["ATIVO", "ATRASADO"]))
-            .all()
-        )
-    
+    def listar_emprestimos_atuais(db, page: int = 1, size: int = 10):
+        return EmprestimoRepository.list_atuais(db, page, size)
+
     @staticmethod
-    def listar_historico_emprestimos(db):
-        return db.query(Emprestimo).all()
+    def listar_historico_emprestimos(db, page: int = 1, size: int = 10):
+        return EmprestimoRepository.list_historico(db, page, size)
+
+
 
 

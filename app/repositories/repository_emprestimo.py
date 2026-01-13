@@ -26,3 +26,20 @@ class EmprestimoRepository:
             .filter(Emprestimo.id_usuario == id_usuario)
             .all()
         )
+    
+    @staticmethod
+    def list_atuais(db: Session, page: int, size: int):
+        offset = (page - 1) * size
+        return (
+            db.query(Emprestimo)
+            .filter(Emprestimo.status.in_(["ATIVO", "ATRASADO"]))
+            .offset(offset)
+            .limit(size)
+            .all()
+        )
+
+    @staticmethod
+    def list_historico(db: Session, page: int, size: int):
+        offset = (page - 1) * size
+        return db.query(Emprestimo).offset(offset).limit(size).all()
+
