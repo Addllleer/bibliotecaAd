@@ -1,5 +1,8 @@
 from pydantic import BaseModel, Field
 from app.domain.enums.perfil_acesso import PerfilAcesso
+from typing import List
+from app.schemas.schema_emprestimo import EmprestimoResumoResponse
+
 
 
 class UsuarioBase(BaseModel):
@@ -13,6 +16,7 @@ class UsuarioCreate(UsuarioBase):
 class UsuarioResponse(UsuarioBase):
     id_usuario: int
     perfil_acesso: str 
+    emprestimos: List[EmprestimoResumoResponse] = []
 
     class Config:
         orm_mode = True

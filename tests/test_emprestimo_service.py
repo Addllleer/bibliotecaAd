@@ -225,3 +225,33 @@ def test_multa_por_atraso(db_session):
 
     assert emprestimo.multa > 0
     assert emprestimo.status == "ATRASADO"
+
+def test_listar_emprestimos_por_usuario(db_session):
+    usuario = UsuarioService.criar_usuario(
+        db_session, "Teste Usuario", PerfilAcesso.USUARIO
+    )
+
+    livros = [
+        LivroService.criar_livro(
+            db_session,
+            f"Livro {i}",
+            "Autor",
+            CategoriaLivro.TECNICO,
+            1
+        )
+        for i in range(2)
+    ]
+
+    for livro in livros:
+        EmprestimoService.realizar_emprestimo(
+            db_session,
+            usuario.id_usuario,
+            livro.id_livro
+        )
+
+    emprestimos = EmprestimoService.listar_emprestimos_por_usuario(
+        db_session,
+        usuario.id_usuario
+    )
+
+    assert len(emprestimos) == 2    

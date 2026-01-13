@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Session
 from app.models.model_emprestimo import Emprestimo
 
-
 class EmprestimoRepository:
 
     @staticmethod
@@ -66,3 +65,20 @@ class EmprestimoRepository:
         db.refresh(emprestimo)
         return emprestimo
 
+    @staticmethod
+    def list_by_usuario(
+        db: Session,
+        id_usuario: int,
+        page: int = 1,
+        size: int = 10
+    ) -> list[Emprestimo]:
+        offset = (page - 1) * size
+
+        return (
+            db.query(Emprestimo)
+            .filter(Emprestimo.id_usuario == id_usuario)
+            .order_by(Emprestimo.data_emprestimo.desc())
+            .offset(offset)
+            .limit(size)
+            .all()
+        )
