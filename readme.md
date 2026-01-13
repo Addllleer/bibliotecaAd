@@ -1,7 +1,8 @@
 # Biblioteca Digital API
 
-API REST para gerenciamento de uma biblioteca digital, desenvolvida em Python, com foco em validações e regras de negócio.  
-O sistema permite o cadastro e a consulta de usuários e livros, além do controle completo do ciclo de empréstimos da biblioteca, incluindo cálculo automático de multas por atraso e consulta do histórico de empréstimos.
+API REST para gerenciamento de uma biblioteca digital, desenvolvida em Python com FastAPI, com foco em regras de negócio, validações consistentes e organização de código em camadas.
+
+O sistema permite o cadastro e consulta de usuários e livros, além do controle completo do ciclo de empréstimos da biblioteca, incluindo cálculo automático de multas por atraso e consulta de histórico de empréstimos.
 
 ---
 
@@ -14,8 +15,20 @@ Este projeto foi desenvolvido como um case técnico, com o objetivo de demonstra
 - separação clara de responsabilidades
 - organização de código em camadas
 - boas práticas de desenvolvimento de APIs REST
+- Testes unitários
 
-O foco do projeto está na **clareza das regras de negócio**, **organização do código** e **facilidade de manutenção**, priorizando soluções simples e bem estruturadas.
+O foco do projeto está na clareza das regras, manutenibilidade do código e simplicidade das soluções, priorizando uma arquitetura limpa e fácil de evoluir.
+
+---
+
+## Tecnologias Utilizadas
+- Python 3.10+
+- FastAPI
+- SQLAlchemy
+- SQLite
+- Pydantic
+- Pytest
+- Uvicorn
 
 ---
 
@@ -32,7 +45,6 @@ O foco do projeto está na **clareza das regras de negócio**, **organização d
 Clone o seguinte repositório
 
 ```
-bash
 git clone https://github.com/Addllleer/bibliotecaAd
 cd bibliotecaAd
 ```
@@ -55,7 +67,35 @@ pip install -r requirements.txt
 ---
 
 ### Execução
-em desenvolvimento
+O projeto possui testes unitários focados na camada de serviços, validando as principais regras de negócio. É possível também executar e validar a aplicação localmente, incluindo testes manuais via API e testes automatizados.
+
+Para executar os testes:
+
+### Teste unitário:
+Executar testes unitários
+```
+pytest -v
+```
+
+---
+### Teste Local da Aplicação
+Com o ambiente virtual ativado, execute o comando abaixo na raiz do projeto:
+
+```
+python -m uvicorn app.main:app --reload
+```
+
+Acesse a aplicação em:
+```
+http://localhost:8000/docs
+```
+
+Documentação automática (Swagger / OpenAPI):
+```
+http://localhost:8000/docs
+```
+
+---
 
 #### Cenários de teste
 Exemplos de casos de uso (cenários):
@@ -71,26 +111,14 @@ Exemplos de casos de uso (cenários):
 - Listar todos os empréstimos ativos e atrasados
 - Consultar histórico de empréstimos por usuário
 
-Testes manuais via Insomnia ou Postman
- 
-Collection Insomnia será disponibilizada
+---
+### Testes via Insomnia 
+Collection Insomnia:
 
-## Testes
-O projeto possui testes unitários focados na camada de serviços, validando as principais regras de negócio.
-
-Para executar os testes:
-
-```
-bash
-pytest -v
-```
+---
 
 ## Arquitetura
-O projeto segue uma Arquitetura em camadas baseada em Router, Service e Repository, organizada da seguinte maneira:
-- Router: recebe requisições HTTP
-- Service: concentra regras de negócio e orquestra fluxos
-- Repository: executa operações de persistência (CRUD)
-- Database: armazena os dados da aplicação
+O projeto segue uma Arquitetura em camadas organizada da seguinte maneira:
 
 ### Routers
 Camada responsável por:
@@ -183,13 +211,21 @@ Implementados com Pydantic.
 
 ## Estrutura de Pastas
 
-```text
+```
 ├──app/
 |  ├── main.py              # Ponto de entrada da aplicação (FastAPI)
 |  ├── database.py          # Configuração e conexão com o banco de dados (SQLite)
+│  ├── exceptions.py            # Handlers globais de exceção
+│  ├── logger.py                # Configuração de logging
 |  ├── utils.py             # Funções utilitárias compartilhadas
 |  ├── __init__.py          
 |  │
+|  ├── domain/enums              # Models ORM (SQLAlchemy)
+│  │   └── enums/
+│  │       ├── categoria_livro.py
+│  │       ├── localizacao_livro.py
+│  │       └── perfil_acesso.py
+|  |
 |  ├── models/              # Models ORM (SQLAlchemy)
 |  │   ├── model_emprestimo.py
 |  │   ├── model_livro.py
@@ -228,4 +264,4 @@ Implementados com Pydantic.
 │   ├── test_livro_service.py
 │   └── test_usuario_service.py
 └── README.md                   # Documentação do projeto
-
+```

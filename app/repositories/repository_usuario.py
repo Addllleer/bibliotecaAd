@@ -5,6 +5,10 @@ from app.models.model_usuario import Usuario
 class UsuarioRepository:
 
     @staticmethod
+    def get_by_nome(db: Session, nome: str) -> Usuario | None:
+        return db.query(Usuario).filter(Usuario.nome == nome).first()
+
+    @staticmethod
     def create(db: Session, usuario: Usuario) -> Usuario:
         db.add(usuario)
         db.commit()
@@ -16,8 +20,9 @@ class UsuarioRepository:
         return db.query(Usuario).filter(Usuario.id_usuario == id_usuario).first()
 
     @staticmethod
-    def list_all(db: Session) -> list[Usuario]:
-        return db.query(Usuario).all()
+    def list_all(db: Session, page: int, size: int):
+        offset = (page - 1) * size
+        return db.query(Usuario).offset(offset).limit(size).all()
 
     @staticmethod
     def count_emprestimos_ativos(db: Session, id_usuario: int) -> int:

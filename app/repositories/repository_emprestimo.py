@@ -26,3 +26,43 @@ class EmprestimoRepository:
             .filter(Emprestimo.id_usuario == id_usuario)
             .all()
         )
+    
+    @staticmethod
+    def list_atuais(db: Session, page: int, size: int):
+        offset = (page - 1) * size
+        return (
+            db.query(Emprestimo)
+            .filter(Emprestimo.status.in_(["ATIVO", "ATRASADO"]))
+            .offset(offset)
+            .limit(size)
+            .all()
+        )
+
+    @staticmethod
+    def list_historico(db: Session, page: int, size: int):
+        offset = (page - 1) * size
+        return db.query(Emprestimo).offset(offset).limit(size).all()
+    
+    @staticmethod
+    def existe_emprestimo_ativo_do_livro(
+        db: Session,
+        id_usuario: int,
+        id_livro: int
+    ) -> bool:
+        return (
+            db.query(Emprestimo)
+            .filter(
+                Emprestimo.id_usuario == id_usuario,
+                Emprestimo.id_livro == id_livro,
+                Emprestimo.status.in_(["ATIVO", "ATRASADO"])
+            )
+            .first()
+            is not None
+        )
+
+    @staticmethod
+    def update(db: Session, emprestimo: Emprestimo) -> Emprestimo:
+        db.commit()
+        db.refresh(emprestimo)
+        return emprestimo
+
