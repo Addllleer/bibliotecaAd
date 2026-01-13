@@ -76,14 +76,32 @@ Testes manuais via Insomnia ou Postman
 Collection Insomnia será disponibilizada
 
 ## Testes
-O projeto possui testes unitários focados na camada de serviços, validando as principais regras de negócio.
+O projeto possui testes unitários focados na camada de serviços, validando as principais regras de negócio. É possível também executar e validar a aplicação localmente, incluindo testes manuais via API e testes automatizados.
 
 Para executar os testes:
 
+### Teste unitário:
 ```
 bash
 pytest -v
 ```
+
+---
+
+### Teste Local da Aplicação
+Com o ambiente virtual ativado, execute o comando abaixo na raiz do projeto:
+
+```
+bash
+python -m uvicorn app.main:app --reload
+```
+
+Acesse a aplicação em:
+```
+http://localhost:8000/docs
+```
+
+---
 
 ## Arquitetura
 O projeto segue uma Arquitetura em camadas baseada em Router, Service e Repository, organizada da seguinte maneira:
@@ -190,6 +208,11 @@ Implementados com Pydantic.
 |  ├── utils.py             # Funções utilitárias compartilhadas
 |  ├── __init__.py          
 |  │
+|  ├── domain/enums              # Models ORM (SQLAlchemy)
+|  │   ├── categoria_livro.py
+|  │   ├── localizacao_livro.py
+|  │   └── perfil_acesso.py
+|  |
 |  ├── models/              # Models ORM (SQLAlchemy)
 |  │   ├── model_emprestimo.py
 |  │   ├── model_livro.py
