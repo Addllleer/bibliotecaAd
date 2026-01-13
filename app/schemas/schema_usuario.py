@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from app.domain.enums.perfil_acesso import PerfilAcesso
 
 
@@ -16,3 +16,7 @@ class UsuarioResponse(UsuarioBase):
 
     class Config:
         orm_mode = True
+
+class UsuarioCreate(BaseModel):
+    nome: str = Field(..., min_length=2, max_length=100)
+    perfil_acesso: PerfilAcesso
