@@ -35,4 +35,12 @@ class LivroService:
     @staticmethod
     def listar_usuarios(db: Session, page: int = 1, size: int = 10):
         return UsuarioRepository.list_all(db, page, size)
+    
+    @staticmethod
+    def buscar_livro(db: Session, id_livro: int):
+        livro = LivroRepository.get_by_id(db, id_livro)
+        if not livro:
+            raise LookupError("Livro não encontrado")
+        return livro
+
 
