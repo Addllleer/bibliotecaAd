@@ -17,6 +17,15 @@ class LivroService:
         localizacao: str | None = None
     ) -> Livro:
 
+        if not titulo or not titulo.strip():
+            raise ValueError("Título inválido")
+
+        if not autor or not autor.strip():
+            raise ValueError("Autor inválido")
+
+        if qtd_copias <= 0:
+            raise ValueError("Quantidade inválida")
+
         livro = Livro(
             titulo=titulo,
             autor=autor,

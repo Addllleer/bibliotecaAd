@@ -60,3 +60,9 @@ class EmprestimoRepository:
             is not None
         )
 
+    @staticmethod
+    def update(db: Session, emprestimo: Emprestimo) -> Emprestimo:
+        db.commit()
+        db.refresh(emprestimo)
+        return emprestimo
+
